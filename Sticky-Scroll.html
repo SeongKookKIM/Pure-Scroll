@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100%;
+      background-color: antiquewhite;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .box1,
+    .box2 {
+      width: 100%;
+      height: 100vh;
+      background-color: aqua;
+    }
+    .horizontal-scroll {
+      width: 100%;
+      height: 500vh;
+      position: relative;
+    }
+    .horizontal-scroll ul {
+      width: 500vh;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      position: sticky;
+      top: 0;
+      padding-left: 50px;
+    }
+    .horizontal-scroll ul li {
+      width: 400px;
+      height: 400px;
+      background-color: blue;
+      list-style: none;
+    }
+  </style>
+  <body>
+    <div class="box1"></div>
+    <div class="horizontal-scroll">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="box2"></div>
+
+    <script>
+      const horizontalScroll = document.querySelector(".horizontal-scroll ul");
+      const box1 = document.querySelector(".box1");
+      let box1Height = box1.offsetHeight;
+
+      window.addEventListener("scroll", () => {
+        let windowScroll = window.scrollY;
+
+        const result = windowScroll - box1Height;
+
+        if (result >= 0) {
+          horizontalScroll.style.transform = `translateX(-${result}px)`;
+        } else {
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
